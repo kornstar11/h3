@@ -20,14 +20,14 @@ pub use quinn::{
 use h3::quic::{self, Error, StreamId, WriteBuf};
 use tokio::io::AsyncWrite;
 
-type OpenBi = Pin<Box<dyn Future<Output = Result<(quinn::SendStream, quinn::RecvStream), quinn_proto::ConnectionError> > >>;
+type OpenBi = Pin<Box<dyn Future<Output = Result<(quinn::SendStream, quinn::RecvStream), quinn_proto::ConnectionError> > + Send>>;
 
 async fn open_bi_fut_wrapper(conn: quinn::Connection) -> Result<(quinn::SendStream, quinn::RecvStream), quinn_proto::ConnectionError> {
     let r = conn.open_bi().await;
     r
 }
 
-type OpenUni = Pin<Box<dyn Future<Output = Result<quinn::SendStream, quinn_proto::ConnectionError>>>>;
+type OpenUni = Pin<Box<dyn Future<Output = Result<quinn::SendStream, quinn_proto::ConnectionError>> + Send>>;
 
 async fn open_uni_fut_wrapper(conn: quinn::Connection) -> Result<quinn::SendStream, quinn_proto::ConnectionError> {
     let r = conn.open_uni().await;

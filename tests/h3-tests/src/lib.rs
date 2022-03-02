@@ -7,13 +7,11 @@ use std::{
 };
 
 use bytes::{Buf, Bytes};
-use futures::StreamExt;
 use rustls::{Certificate, PrivateKey};
 
 use h3::quic;
 use h3_quinn::{
-    rustls::*,
-    quinn::{Incoming, NewConnection, TransportConfig, ServerConfig},
+    quinn::{Incoming, NewConnection, TransportConfig},
     Connection,
 };
 
