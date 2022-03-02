@@ -7,9 +7,10 @@ edition = "2018"
 [dependencies]
 h3 = { path = "../h3" }
 bytes = "1"
-quinn = "0.8.0"
-quinn-proto = "0.8.0"
+quinn = {git ="https://github.com/quinn-rs/quinn.git"}
+quinn-proto = {git ="https://github.com/quinn-rs/quinn.git"}
 futures = "0.3"
+tokio = { version = "1.16.1", features = ["sync", "full"] }
 
 [dev-dependencies]
 http = "0.2"
